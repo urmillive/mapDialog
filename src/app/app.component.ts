@@ -11,14 +11,15 @@ export class AppComponent {
   open = false;
   @ViewChild(DialogComponent) dialogComponent!: DialogComponent;
   @ViewChild('dialogH1') dialogH1!: ElementRef;
-
+  constructor(private elementRef: ElementRef) {}
   toggle() {
     this.open = !this.open;
     if (this.open) {
       setTimeout(() => {
-        const h1Element = this.dialogH1.nativeElement;
+        const h1Element =
+          this.elementRef.nativeElement.querySelector('#helloWorld');
         h1Element.textContent = 'Hello, updated world!';
-      });
+      }, 1000);
     }
   }
 }
